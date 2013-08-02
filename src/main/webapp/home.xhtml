@@ -1,0 +1,35 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        contentType="text/html">
+
+    <h:head>
+        <h:outputStylesheet library="css" name="linkcollector.css"/>
+    </h:head>
+
+    <h:body>
+        <h:form prependId="false" >
+            <h:panelGroup id="containerFromGroup">
+                <h:panelGrid columns="3"
+                             rendered="#{containerCtrl.selectedContainer.UUID == null}">
+                    <h:outputLabel for="containername" value="Name  "/>
+                    <p:inputText id="containername"
+                                 required="true"
+                                 requiredMessage="please enter container name"
+                                 value="#{containerCtrl.selectedContainer.name}" />
+                    <p:message for="containername" id="containernameMsg"/>
+                    <p:commandButton value="create"
+                                     update="containerFromGroup"
+                                     action="#{containerCtrl.createContainer}"/>
+                </h:panelGrid>
+                <h:outputText  rendered="#{!containerCtrl.selectedContainer.UUID == null}"
+                               value="#{containerCtrl.selectedContainer.UUID}" />
+
+            </h:panelGroup>
+        </h:form>
+
+    </h:body>
+
+</f:view>
